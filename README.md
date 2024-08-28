@@ -39,7 +39,7 @@ Update "SERVICE_ACCOUNT_FILE" with downloaded .json file path
 Example: https://drive.google.com/file/d/1abcDxyz/view?usp=sharing
 Here, the file ID is 1abcDxyz.
 
-### Step 5: Execute Code
+### Step 5: Execute Code using command line
  python3 .venv/TestDownload.py <file_id> <output_folder>
 
 
