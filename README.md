@@ -13,24 +13,24 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-pyt
 ##  Step 2: Ensure You Have the Correct Service Account JSON File
 Generate a New Service Account Key File:
 
-Go to the Google Cloud Console.
-Navigate to IAM & Admin > Service Accounts.
-Select the project where you want to create the service account.
-Click Create Service Account.
-Enter a name for the service account and optionally a description.
-Click Create.
-Assign appropriate roles (e.g., Project > Editor, or more specific roles as needed).
-Click Continue.
-Click Done.
-Create a Key for the Service Account:
+1. Go to the Google Cloud Console.
+2. Navigate to IAM & Admin > Service Accounts.
+3. Select the project where you want to create the service account.
+4. Click Create Service Account.
+5. Enter a name for the service account and optionally a description.
+6. Click Create.
+7. Assign appropriate roles (e.g., Project > Editor, or more specific roles as needed).
+8. Click Continue.
+9. Click Done.
+10. Create a Key for the Service Account:
 
-Click on the service account you just created.
-Go to the Keys tab.
-Click Add Key > Create New Key.
-Choose JSON as the key type.
-Click Create.
-Save the downloaded JSON key file securely. This file should contain the necessary fields (client_email, token_uri, etc.).
-Placce .json file in your work repo
+11. Click on the service account you just created.
+12. Go to the Keys tab.
+13. Click Add Key > Create New Key.
+14. Choose JSON as the key type.
+15. Click Create.
+16. Save the downloaded JSON key file securely. This file should contain the necessary fields (client_email, token_uri, etc.).
+17. Placce .json file in your work repo
 
 ### Step 3: Update TestDownload.py
 Update "SERVICE_ACCOUNT_FILE" with downloaded .json file path
