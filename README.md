@@ -41,5 +41,6 @@ Here, the file ID is 1abcDxyz.
 
 ### Step 5: Execute Code using command line
  python3 .venv/TestDownload.py <file_id> <output_folder>
+python3 .venv/TestDownload.py --file_id <"file_id"> --output_folder <output_folder_path> --service_account_file_path <service_account_file_path>
 
 

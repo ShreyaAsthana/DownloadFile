@@ -1,24 +1,32 @@
-package download;
 import os
 import sys
 import io
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
+import argparse
 
 # Define scopes
 SCOPES = ['https://www.googleapis.com/auth/drive']
 export_mime_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
 
-def authenticate():
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-fid', '--file_id', required=True, help='id of the google drive file')
+    parser.add_argument('-output', '--output_folder', required=True,
+                        help='Output folder where file needs to be downloaded')
+    parser.add_argument('-sfile', '--service_account_file_path', required=True, help='Path of the service account file')
+    args = parser.parse_args()
+    return args
+
+
+def authenticate(service_account_file_path):
     """Authenticate the user and return a Google Drive API service instance."""
     creds = None
-    # Path to the service account credentials file
-    SERVICE_ACCOUNT_FILE = '/Users/s0a0hk9/PycharmProjects/DownloadFile/.venv/client_secret.json'
 
     creds = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+        service_account_file_path, scopes=SCOPES)
 
     return build('drive', 'v3', credentials=creds)
 
@@ -38,20 +46,18 @@ def download_file(service, file_id, output_folder):
         print(f"Failed to download file: {str(e)}")
 
 
-def main(file_id, output_folder):
+def main(file_id, output_folder, service_account_file_path):
     if not os.path.exists(output_folder):
         print(f"Output folder {output_folder} does not exist.")
         sys.exit(1)
 
-    service = authenticate()
+    service = authenticate(service_account_file_path)
     download_file(service, file_id, output_folder)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python download_drive_file.py <file_id> <output_folder>")
-        sys.exit(1)
-
-    file_id = sys.argv[1]
-    output_folder = sys.argv[2]
-    main(file_id, output_folder)
+    args = parse_arguments()
+    file_id = args.file_id
+    output_folder = args.output_folder
+    service_account_file_path = args.service_account_file_path
+    main(file_id, output_folder, service_account_file_path)
